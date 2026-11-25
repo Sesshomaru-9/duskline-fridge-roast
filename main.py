@@ -79,6 +79,9 @@ def pick_output_dir():
             return None
     if is_within_repo(out):
         return None
+    # A path that already exists as a plain file is not a directory.
+    if os.path.exists(out) and not os.path.isdir(out):
+        return None
     return out
 
 
